@@ -16,7 +16,7 @@ water valve with flat hose
 
 conveyer or lift type up down max
 
-optical sensors or better sonar no droplets errrors
+optical sensors or better ultrasonic no droplets errrors
 
 https://www.google.com/search?q=bloemen+emmer+vuller&hl=en&tbm=vid
 
