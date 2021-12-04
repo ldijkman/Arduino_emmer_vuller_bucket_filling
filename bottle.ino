@@ -2,6 +2,8 @@ aalsmeer bloemen veiling emmervuller containervuller fustvuller
 
 https://youtu.be/L9ZFgElnTGU
 
+https://hacksterio.s3.amazonaws.com/uploads/attachments/1200705/automatic_water_bottle_filling_system_L7E1jegbDF.png
+
 https://create.arduino.cc/projecthub/embeddedlab786/automatic-water-bottle-filling-system-e8251c
 conveyer belt type water filling
 want i2c lcd
