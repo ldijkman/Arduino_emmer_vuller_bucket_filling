@@ -7,6 +7,8 @@ started with the code from
 but will change a lot and add some comments to the code
 https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
 
+should have a sreen for testing all inputs / outputs to check working
+
 
 
 aalsmeer bloemen veiling emmervuller containervuller fustvuller
