@@ -31,8 +31,8 @@
 #include <EEPROM.h>                       // for saving fillingtime tru reboot / powercycle
 LiquidCrystal lcd(2, 3, 4, 5, 6, 7);      // better use i2c display???
 
-#define echopin A4 // echo pin
-#define trigpin A5 // Trigger pin
+#define echopin A4                        // echo pin      // ultrasonic tank level detection  not needed
+#define trigpin A5                       // Trigger pin    // ultrasonic tank level detection  not needed
 
 int cont = 0;
 
@@ -58,8 +58,8 @@ int ir_fill = 11;
 int ir_stop = 12;
 
 
-int dist;
-long duration;
+int dist;                 // ultrasonic tank level detection  not needed
+long duration;            // ultrasonic tank level detection  not needed
 
 int val1 = 0, val2 = 0, val3 = 0, val4 = 1;
 long fillingtime = 0;
@@ -70,24 +70,18 @@ long fillingtime = 0;
 
 
 void setup() {
+                                                  // i like to use a rotary encoder for fill time setting and 1 start/stop button
+  pinMode (button_set, INPUT_PULLUP);             // input pullup ???
+  pinMode (button_val_up, INPUT_PULLUP);          // input pullup ???
+  pinMode (button_stop], INPUT_PULLUP);           // input pullup ???
+  pinMode (button_start, INPUT_PULLUP);           // input pullup ???
+                                                  // i like to use a rotary encoder for fill time setting and 1 start/stop button
+  pinMode(ir_fill, INPUT_PULLUP);
+  pinMode(ir_start, INPUT_PULLUP);                // 3x input pullup ??? no resistors needed
+  pinMode(ir_stop, INPUT_PULLUP);                 // think 2 product detection sensors are enough 1 fill position and 1 end conveyer position stop
 
-  pinMode (button_set, INPUT);          // input pullup ???
-  digitalWrite(button_set, HIGH);       // i like to use a rotary encoder for fill time setting and 1 start/stop button
-  pinMode (button_val_up, INPUT);          // input pullup ???
-  digitalWrite(button_val_up, HIGH);       // i like to use a rotary encoder for fill time setting and 1 start/stop button
-  pinMode (button_stop], INPUT);          // input pullup ???
-  digitalWrite(button_stop, HIGH);       // i like to use a rotary encoder for fill time setting and 1 start/stop button
-  pinMode (button_start, INPUT);          // input pullup ???
-  digitalWrite(button_start, HIGH);       // i like to use a rotary encoder for fill time setting and 1 start/stop button
-
-
-
-  pinMode(ir_fill, INPUT);
-  pinMode(ir_start, INPUT);             // 3x input pullup ??? no resistors needed
-  pinMode(ir_stop, INPUT);              // think 2 product detection sensors are enough 1 fill position and 1 end conveyer position stop
-
-  pinMode (trigpin, OUTPUT);            // ultrasonic tank level detection  not needed
-  pinMode (echopin, INPUT);             // ultrasonic tank level detection  not needed
+  pinMode (trigpin, OUTPUT);                      // ultrasonic tank level detection  not needed
+  pinMode (echopin, INPUT);                       // ultrasonic tank level detection  not needed
 
   pinMode(beltmotor, OUTPUT);
   pinMode(pump_or_valve, OUTPUT);
@@ -110,7 +104,7 @@ void setup() {
   //analogWrite(beltmotor, 100);
 
   for (int i = 0; i < 5; i ++) {       // ultrasonic tank level detection  not needed
-    dist = data1();                    // ultrasonic tank level detection  not needed
+  dist = data1();                    // ultrasonic tank level detection  not needed
     data2();                           // ultrasonic tank level detection  not needed
     delay(100);                        // ultrasonic tank level detection  not needed
   }                                    // ultrasonic tank level detection  not needed
