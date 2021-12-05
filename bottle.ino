@@ -11,9 +11,18 @@ want rotary encoder for watervlaveopentime setting
 https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
 
 
+arduino uno 
+icc 20x4 dot matrix lcd
+rotary encoder
+buttons
+optic or ultrasonic sensors for bottle bucket detection
+valve or pump for water
+relais engine conveyer belt motor
+
+
 #include<LiquidCrystal.h>                 // better use i2c display???
-#include <EEPROM.h>
-LiquidCrystal lcd(2, 3, 4, 5, 6, 7);     // better use i2c display???
+#include <EEPROM.h>                       // for saving fillingtime tru reboot / powercycle
+LiquidCrystal lcd(2, 3, 4, 5, 6, 7);      // better use i2c display???
 
 #define echopin A4 // echo pin
 #define trigpin A5 // Trigger pin
