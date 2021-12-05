@@ -40,6 +40,10 @@ und so weiter GOTO BEGIN:
 
 https://www.google.com/search?q=berg+emmervuller
 
+https://www.google.com/search?q=bercomex+emmervuller
+
+https://www.google.com/search?q=bercomex+bucketfill
+
 Lift type 
 
 
