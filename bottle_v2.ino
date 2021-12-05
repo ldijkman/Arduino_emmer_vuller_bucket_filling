@@ -19,14 +19,18 @@ http://paypal.me/LDijkman
   want i2c lcd
   want rotary encoder for water_valve_opentime setting
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
-  arduino uno
-  icc 20x4 dot matrix lcd
-  rotary encoder
-  buttons
-  optic or ultrasonic sensors for bottle bucket detection
-  valve or pump_or_valve for water
-  relais engine conveyer belt beltmotor
-*/
+  
+  Arduino Nano or Uno            2 to 5 euro
+  i2c 20x4 dot matrix LCD        5 euro
+  rotary encoder                 1 euro
+  buttons                        1 euro
+  optic or ultrasonic sensors for bottle bucket detection  1 to 10 euro
+  valve or pump_or_valve for water                          ??? euro
+  relais engine conveyer belt beltmotor                     ??? euro
+
+Arduino Code ??? euro    http://paypal.me/LDijkman
+
+ */
 
 #include <LiquidCrystal_I2C.h>                // better use i2c display??? https://www.arduinolibraries.info/libraries/liquid-crystal-i2-c
 #include <EEPROM.h>                           // for saving fillingtime tru reboot / powercycle
@@ -39,7 +43,7 @@ int cont = 0;
 // int ???
 int button_set = A0;        // button set fill timer micro seconds digit selection    could be 2,9 seconds instead of 2900 milli
 int button_val_up = A1;     // button time        digit value++ up increase
-int button_stop = A2;       // button stop    // now only start button is used for start and stop
+int button_stop = A2;       // not used button stop    // now only start button is used for start and stop
 int button_start = A3;      // button start       start and stop could be made 1 button
 
 
