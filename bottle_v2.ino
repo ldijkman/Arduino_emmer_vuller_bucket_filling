@@ -9,14 +9,17 @@ http://paypal.me/LDijkman
       https://github.com/embeddedlab786/Automatic_Water_Bottle_Filling_System
   but will change a lot and add some comments to the code
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
+  
+  
   should have a screen for testing all inputs / outputs to check working
   aalsmeer bloemen veiling emmervuller containervuller fustvuller
   low cost water filling timer conveyer belt automation controller +/-10 euro
   https://youtu.be/L9ZFgElnTGU
   https://hacksterio.s3.amazonaws.com/uploads/attachments/1200705/automatic_water_bottle_filling_system_L7E1jegbDF.png
   https://create.arduino.cc/projecthub/embeddedlab786/automatic-water-bottle-filling-system-e8251c
+  
   conveyer belt type water filling
-  want i2c lcd
+
   want rotary encoder for water_valve_opentime setting
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
   
