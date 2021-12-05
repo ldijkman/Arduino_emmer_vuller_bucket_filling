@@ -18,7 +18,7 @@ conveyer or lift type up down max
 
 optical sensors or maybe better ultrasonic sensors no droplets errrors
 
-Cheap ulteaaonic car parking sensor for bucket detection
+Cheap ultrasonic car parking sensor for bucket detection
 
 https://www.google.com/search?q=bloemen+emmer+vuller&hl=en&tbm=vid
 
