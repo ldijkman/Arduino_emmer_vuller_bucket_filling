@@ -202,8 +202,8 @@ void loop() {
           delay(result);
           digitalWrite(pump, LOW);
           for (int i = 0; i < 10; i ++) {
-            dist = data1();
-            data2();
+            dist = data1();                     // ultrasonic tank level detection  not needed 
+            data2();                            // ultrasonic tank level detection  not needed 
             delay(200);
           }
           analogWrite(motor, 200);
@@ -236,7 +236,7 @@ void Write() {
 
 
 void data2() {
-  dist = map(dist, 2, 30, 100, 0);
+  dist = map(dist, 2, 30, 100, 0);          // map ultrasonic tank level detection 0 to 100%  not needed 
   if (dist > 100) {
     dist = 100;
   }
