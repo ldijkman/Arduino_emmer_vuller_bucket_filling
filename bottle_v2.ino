@@ -2,7 +2,6 @@
 
 
 
-
 /*
   started with the code from
       https://youtu.be/L9ZFgElnTGU
@@ -40,7 +39,7 @@ int cont = 0;
 // int ???
 int button_set = A0;        // button set fill timer micro seconds digit selection    could be 2,9 seconds instead of 2900 milli
 int button_val_up = A1;     // button time        digit value++ up increase
-int button_stop = A2;       // button stop
+int button_stop = A2;       // button stop    // now only start button is used for start and stop
 int button_start = A3;      // button start       start and stop could be made 1 button
 
 
@@ -56,11 +55,11 @@ int pump_or_valve = 8;
 int beltmotor = 9;
 
 int ir_start = 10;    // position after filling >>> should be possible without this one if code is changed
-int ir_fill = 11;     // filling position   
+int ir_fill = 11;     // filling position
 int ir_stop = 12;     // end  belt stop
 
-//sensors on belt looks like next setup 
-// >>>>>>>>>11 filling position>>>>>>>>>>>10 position after filling>>>>>>>>>>> 12 end  belt stop 
+//sensors on belt looks like next setup
+// >>>>>>>>>11 filling position>>>>>>>>>>>10 position after filling>>>>>>>>>>> 12 end  belt stop
 
 
 int val1 = 0, val2 = 0, val3 = 0, val4 = 1;
@@ -189,9 +188,9 @@ void loop() {
     lcd.setCursor(0, 1); lcd.print("    BucketFiller ");
 
     lcd.setCursor(0, 2);
-    lcd.print("stop=");
+    lcd.print("run = ");
     lcd.print(stop);
-    lcd.print("    ");
+    lcd.print("        ");
 
     lcd.setCursor(0, 3);
     lcd.print("Fill Time = ");
@@ -238,8 +237,21 @@ void loop() {
           lcd.setCursor(0, 2);
           lcd.print("water open");
           digitalWrite(pump_or_valve, HIGH);          // start watering
-          delay(fillingtime);                         // delay fillingtiime should not be a delay but while startmillis actualmillis fillingmillis
-                                                      // so that we can make a countdown on screen
+
+          long startmillis = millis();
+          while (startmillis + fillingtime > millis()) {
+            lcd.setCursor(0, 2);
+            lcd.print("water open ");
+            if (fillingtime - (millis() - startmillis) < 1000)lcd.print(" ");   // keep position on the right
+            if (fillingtime - (millis() - startmillis) < 100)lcd.print(" ");
+            if (fillingtime - (millis() - startmillis) < 10)lcd.print(" ");
+            lcd.print(long(fillingtime - (millis() - startmillis)));               // show countdown
+            // lcd.print("    ");
+            // delay(100);
+          }
+          lcd.setCursor(0, 2);
+          lcd.print("                    ");
+
           digitalWrite(pump_or_valve, LOW);           // stop wattering
           analogWrite(beltmotor, 200);                // start belt
         }
@@ -280,6 +292,11 @@ void Write() {
 
 
 
+
+// https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
+
+
+// https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
 
 // https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
 
