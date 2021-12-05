@@ -1,3 +1,13 @@
+/*
+started with the code from
+      https://create.arduino.cc/projecthub/embeddedlab786/automatic-water-bottle-filling-system-e8251c
+      https://github.com/embeddedlab786/Automatic_Water_Bottle_Filling_System
+
+but will change a lot and add some comments to the code
+https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
+
+
+
 aalsmeer bloemen veiling emmervuller containervuller fustvuller
 
 low cost water filling timer conveyer belt automation controller +/-10 euro
@@ -21,6 +31,8 @@ optic or ultrasonic sensors for bottle bucket detection
 valve or pump_or_valve for water
 relais engine conveyer belt beltmotor
 
+
+*/
 
 #include<LiquidCrystal.h>                 // better use i2c display???
 #include <EEPROM.h>                       // for saving fillingtime tru reboot / powercycle
