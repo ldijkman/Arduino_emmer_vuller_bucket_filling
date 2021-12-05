@@ -17,9 +17,10 @@ Lift type
 ![image](https://user-images.githubusercontent.com/45427770/144736990-afe15bbb-2e55-4d07-9809-1b7f57647ccf.png)
 ![image](https://user-images.githubusercontent.com/45427770/144736551-9788f28a-9d06-4d0c-8117-9c16055530d4.png)
 
-BEGIN:
 
-place stack off xxx buckets on the lift
+place stack off xxx buckets on the lift and press startbutton
+
+BEGIN:
 
 lift goes up to optical sensor then fills bucket for xxx time with water
 
