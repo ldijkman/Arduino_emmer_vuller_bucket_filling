@@ -19,19 +19,21 @@ Lift type
 
 place stack off xxx buckets on the lift
 
-lift goes up to optical sensor then fills bucket for xxx time
+lift goes up to optical sensor then fills bucket for xxx time with water
 
 if top bucket filled with flowers and take out 
 
-lift goes higher to optical sensor again and fills it
+lift goes higher to optical sensor again and fills it with water
 
-if stack off buckets empty lift moves up to topend switch 
+if stack off buckets empty lift moves up to top endswitch 
 
-and goes down to downswitch
+and goes down to down endswitch
 
 place a new stack off buckets
 
-press start and lift goes up to optical sensor and fills top bucket
+press start and lift goes up top bucket to optical sensor and fills top bucket with water
+
+und so weiter
 
 https://www.google.com/search?q=berg+emmervuller
 
