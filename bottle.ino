@@ -97,10 +97,10 @@ void setup() {
 void loop() {
 
   if (stop == 0) {
-    if (digitalRead (in1) == 0) {
+    if (digitalRead (in1) == 0) {       // set select digit button pressed
       lcd.clear();
       mode = mode + 1;
-      if (mode > 4) {
+      if (mode > 4) {                  // set switch digit  select 1 of 4 digits 
         mode = 0;
         Write();
         Read();
@@ -111,29 +111,29 @@ void loop() {
       delay(300);
     }
 
-    if (digitalRead (in2) == 0) {
-      if (mode == 1) {
+    if (digitalRead (in2) == 0) {           // up button pressed fillingtime value++ 
+      if (mode == 1) {                      // digit 1 of 4 activefor change
         val1 = val1 + 1;
       }
-      if (mode == 2) {
+      if (mode == 2) {                     // digit 2 of 4 active for change
         val2 = val2 + 1;
       }
-      if (mode == 3) {
+      if (mode == 3) {                   // digit 3 of 4 active for change
         val3 = val3 + 1;
       }
-      if (mode == 4) {
+      if (mode == 4) {                  // digit 5 of 4 active for change
         val4 = val4 + 1;
       }
-      if (val1 > 9) {
-        val1 = 0;
+      if (val1 > 9) {                   // digit1 not greater as 9 make 10 zero
+        val1 = 0; 
       }
-      if (val2 > 9) {
+      if (val2 > 9) {                  // digit2 not greater as 9 make 10 zero
         val2 = 0;
       }
-      if (val3 > 9) {
+      if (val3 > 9) {                // digit3 not greater as 9 make 10 zero
         val3 = 0;
       }
-      if (val4 > 9) {
+      if (val4 > 9) {                // digit4 not greater as 9 make 10 zero
         val4 = 0;
       }
       delay(300);
@@ -141,10 +141,10 @@ void loop() {
   }
 
   if (mode == 0) {
-    if (digitalRead (in3) == 0) {
+    if (digitalRead (in3) == 0) {                 // stop button pressed
       stop = 0;
     }
-    if (digitalRead (in4) == 0) {
+    if (digitalRead (in4) == 0) {                // start button pressed   start stop could me made 1 button
       stop = 1;
     }
 
@@ -245,7 +245,7 @@ void data2() {
   }
 }
 
-long data1() {
+long data1() {                             // ultrasonic tank level detection  not needed 
   digitalWrite(trigpin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigpin, HIGH);
