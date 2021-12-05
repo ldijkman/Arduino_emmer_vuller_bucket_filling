@@ -5,6 +5,8 @@
 
 
 
+
+
 /*
   started with the code from
       https://youtu.be/L9ZFgElnTGU
@@ -12,14 +14,7 @@
       https://github.com/embeddedlab786/Automatic_Water_Bottle_Filling_System
   but will change a lot and add some comments to the code
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
-  
   should have a screen for testing all inputs / outputs to check working
-  filling time should not be a delay but startmillis fillmillis actualmillis
-  so that we can make a countdown
-  and add another filltimer with countdown for nutricients or chloride  
-  fillcounter with reset
-  remove stopbutten make startbutton toggle
-  
   aalsmeer bloemen veiling emmervuller containervuller fustvuller
   low cost water filling timer conveyer belt automation controller +/-10 euro
   https://youtu.be/L9ZFgElnTGU
@@ -79,12 +74,12 @@ long fillingtime = 0;
 
 
 void setup() {
-                                                  // i like to use a rotary encoder for fill time setting and 1 start/stop button
+  // i like to use a rotary encoder for fill time setting and 1 start/stop button
   pinMode (button_set, INPUT_PULLUP);             // input pullup ???
   pinMode (button_val_up, INPUT_PULLUP);          // input pullup ???
   pinMode (button_stop, INPUT_PULLUP);           // input pullup ???
   pinMode (button_start, INPUT_PULLUP);           // input pullup ???
-                                                  // i like to use a rotary encoder for fill time setting and 1 start/stop button
+  // i like to use a rotary encoder for fill time setting and 1 start/stop button
   pinMode(ir_fill, INPUT_PULLUP);
   pinMode(ir_start, INPUT_PULLUP);                // 3x input pullup ??? no resistors needed
   pinMode(ir_stop, INPUT_PULLUP);                 // think 2 product detection sensors are enough 1 fill position and 1 end conveyer position stop
@@ -96,13 +91,13 @@ void setup() {
 
   lcd.begin();               // initialize the LCD
 
-  lcd.backlight();           // Turn on the backlight 
-  
-  lcd.setCursor(0, 0); lcd.print("   WELCOME  To  ");
-  lcd.setCursor(0, 1); lcd.print("Automatic  Water");
-  lcd.setCursor(0, 2); lcd.print("  Filling");
-  lcd.setCursor(0, 3); lcd.print("          System");
-  delay(2000);
+  lcd.backlight();           // Turn on the backlight
+
+  lcd.setCursor(0, 0); lcd.print("     EmmerVuller ");
+  lcd.setCursor(0, 1); lcd.print("    BucketFiller ");
+  lcd.setCursor(0, 2); lcd.print("      Filling    ");
+  lcd.setCursor(0, 3); lcd.print("      System     ");
+  delay(5000);
   Serial.begin(9600);
 
 
@@ -172,31 +167,36 @@ void loop() {
 
 
   if (mode == 0) {
-    if (digitalRead (button_stop) == 0) {                 // stop button pressed
-      stop = 0;
-    }
-    if (digitalRead (button_start) == 0) {                // start button pressed   start stop could me made 1 button
-      stop = 1;
-    }
 
- /*   
+    //  if (digitalRead (button_stop) == 0) {                 // stop button pressed
+    //    stop = 0;
+    //  }
+    // if (digitalRead (button_start) == 0) {                // start button pressed   start stop could me made 1 button
+    //  stop = 1;
+    //  }
+
+
     // start stop could me made 1 button like next
     // toggle stopval
     if (digitalRead (button_start) == 0) {                // stop/start button pressed toggle
-      stop = !stop;                                      // !stop (stop = notstop) toggle the value in stop
+      while (digitalRead (button_start) == 0) {
+        /*nop*/
+      }
+      stop = !stop;                                       // !stop (stop = notstop) toggle the value in stop
+      delay(500);
     }
- */   
-    
-    lcd.setCursor(0, 0); lcd.print("   WELCOME  To  ");
-    lcd.setCursor(0, 1); lcd.print("     A W F S    ");
+
+
+    lcd.setCursor(0, 0); lcd.print("     EmmerVuller ");
+    lcd.setCursor(0, 1); lcd.print("    BucketFiller ");
 
     lcd.setCursor(0, 2);
     lcd.print("stop=");
     lcd.print(stop);
-   // lcd.print("%   ");
+    // lcd.print("%   ");
 
     lcd.setCursor(0, 3);
-    lcd.print("Fill Time =");
+    lcd.print("Fill Time = ");
     lcd.print(fillingtime);
     lcd.print("   ");
   } else {
