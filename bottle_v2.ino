@@ -1,6 +1,6 @@
 
 
-http://paypall.me/LDijkman
+http://paypal.me/LDijkman
 
 /*
   started with the code from
@@ -296,5 +296,5 @@ void Write() {
 // https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
 
 
-// http://paypall.me/LDijkman
+// http://paypal.me/LDijkman
 
