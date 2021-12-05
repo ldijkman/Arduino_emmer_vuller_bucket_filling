@@ -1,31 +1,21 @@
+
 /*
 started with the code from
       https://youtu.be/L9ZFgElnTGU
       https://create.arduino.cc/projecthub/embeddedlab786/automatic-water-bottle-filling-system-e8251c
       https://github.com/embeddedlab786/Automatic_Water_Bottle_Filling_System
-
 but will change a lot and add some comments to the code
 https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
-
 should have a screen for testing all inputs / outputs to check working
-
-
-
 aalsmeer bloemen veiling emmervuller containervuller fustvuller
-
 low cost water filling timer conveyer belt automation controller +/-10 euro
-
 https://youtu.be/L9ZFgElnTGU
-
 https://hacksterio.s3.amazonaws.com/uploads/attachments/1200705/automatic_water_bottle_filling_system_L7E1jegbDF.png
-
 https://create.arduino.cc/projecthub/embeddedlab786/automatic-water-bottle-filling-system-e8251c
 conveyer belt type water filling
 want i2c lcd
 want rotary encoder for water_valve_opentime setting
 https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
-
-
 arduino uno 
 icc 20x4 dot matrix lcd
 rotary encoder
@@ -33,8 +23,6 @@ buttons
 optic or ultrasonic sensors for bottle bucket detection
 valve or pump_or_valve for water
 relais engine conveyer belt beltmotor
-
-
 */
 
 #include<LiquidCrystal.h>                 // better use i2c display???
@@ -85,8 +73,8 @@ void setup() {
   pinMode(ir_start, INPUT);             // 3x input pullup ??? no resistors needed
   pinMode(ir_stop, INPUT);              // think 2 product detection sensors are enough 1 fill position and 1 end conveyer position stop
 
-  pinMode (trigpin, OUTPUT);
-  pinMode (echopin, INPUT);
+  pinMode (trigpin, OUTPUT);            // ultrasonic tank level detection  not needed 
+  pinMode (echopin, INPUT);             // ultrasonic tank level detection  not needed 
 
   pinMode(beltmotor, OUTPUT);
   pinMode(pump_or_valve, OUTPUT);
@@ -100,16 +88,28 @@ void setup() {
   lcd.setCursor(0, 3); lcd.print("          System");
   delay(2000);
   Serial.begin(9600);
-  //Write();
-  Read();
+  
+  
+ 
+  Read();                                   // read eeprom fillingtime wil be 0 at the first boot ???
+  if (fillingtime==0) fillingtime=2500;     // make it 2500 iliseconds 2.5 seconds
+  
   //analogWrite(beltmotor, 100);
-  for (int i = 0; i < 5; i ++) {
-    dist = data1();
-    data2();
-    delay(100);
-  }
+  
+  for (int i = 0; i < 5; i ++) {       // ultrasonic tank level detection  not needed 
+    dist = data1();                    // ultrasonic tank level detection  not needed 
+    data2();                           // ultrasonic tank level detection  not needed 
+    delay(100);                        // ultrasonic tank level detection  not needed 
+  }                                    // ultrasonic tank level detection  not needed 
+
+  
   lcd.clear();
-}
+
+
+} // end setup
+
+
+
 
 void loop() {
 
@@ -155,7 +155,12 @@ void loop() {
       }
       delay(300);
     }
-  }
+  } // end if stop == 0
+
+
+
+
+  
 
   if (mode == 0) {
     if (digitalRead (in3) == 0) {                 // stop button pressed
