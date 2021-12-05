@@ -3,10 +3,6 @@
 
 
 
-
-
-
-
 /*
   started with the code from
       https://youtu.be/L9ZFgElnTGU
@@ -59,10 +55,12 @@ int timer = 0;
 int pump_or_valve = 8;
 int beltmotor = 9;
 
-int ir_start = 10;
-int ir_fill = 11;
-int ir_stop = 12;
+int ir_start = 10;    // position after filling
+int ir_fill = 11;     // filling position   
+int ir_stop = 12;     // end  belt stop
 
+//sensors on belt looks like next setup 
+// >>>>>>>>>11 filling position>>>>>>>>>>>10 position after filling>>>>>>>>>>> 12 end  belt stop 
 
 
 int val1 = 0, val2 = 0, val3 = 0, val4 = 1;
@@ -193,7 +191,7 @@ void loop() {
     lcd.setCursor(0, 2);
     lcd.print("stop=");
     lcd.print(stop);
-    // lcd.print("%   ");
+    lcd.print("    ");
 
     lcd.setCursor(0, 3);
     lcd.print("Fill Time = ");
@@ -237,6 +235,8 @@ void loop() {
           stop1 = 1;
           analogWrite(beltmotor, 0);                  // stop belt
           delay(200);
+          lcd.setCursor(0, 2);
+          lcd.print("water open");
           digitalWrite(pump_or_valve, HIGH);          // start watering
           delay(fillingtime);                         // delay fillingtiime
           digitalWrite(pump_or_valve, LOW);           // stop wattering
@@ -278,6 +278,9 @@ void Write() {
 
 
 
+
+
+// https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
 
 
 // https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
