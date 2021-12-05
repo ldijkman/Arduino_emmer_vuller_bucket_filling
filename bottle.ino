@@ -119,8 +119,8 @@ void loop() {
       mode = mode + 1;
       if (mode > 4) {                  // set switch digit  select 1 of 4 digits 
         mode = 0;
-        Write();
-        Read();
+        Write();                       // write fillingtime to eeprom
+        Read();                        // read fillingtime from eeprom
         lcd.setCursor(0, 0);
         lcd.print("  Ok Saved Data ");
         delay(1000);
@@ -129,7 +129,7 @@ void loop() {
     }
 
     if (digitalRead (in2) == 0) {           // up button pressed fillingtime value++ 
-      if (mode == 1) {                      // digit 1 of 4 activefor change
+      if (mode == 1) {                      // digit 1 of 4 active for change
         val1 = val1 + 1;
       }
       if (mode == 2) {                     // digit 2 of 4 active for change
