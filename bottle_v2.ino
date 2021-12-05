@@ -55,7 +55,7 @@ int timer = 0;
 int pump_or_valve = 8;
 int beltmotor = 9;
 
-int ir_start = 10;    // position after filling
+int ir_start = 10;    // position after filling >>> should be possible without this one if code is changed
 int ir_fill = 11;     // filling position   
 int ir_stop = 12;     // end  belt stop
 
@@ -73,10 +73,10 @@ long fillingtime = 0;
 
 void setup() {
   // i like to use a rotary encoder for fill time setting and 1 start/stop button
-  pinMode (button_set, INPUT_PULLUP);             // input pullup ???
-  pinMode (button_val_up, INPUT_PULLUP);          // input pullup ???
-  pinMode (button_stop, INPUT_PULLUP);           // input pullup ???
-  pinMode (button_start, INPUT_PULLUP);           // input pullup ???
+  pinMode (button_set, INPUT_PULLUP);             // input pullup ??? no resistors needed
+  pinMode (button_val_up, INPUT_PULLUP);          // input pullup ??? no resistors needed
+  pinMode (button_stop, INPUT_PULLUP);            // input pullup ??? no resistors needed
+  pinMode (button_start, INPUT_PULLUP);           // input pullup ??? no resistors needed
   // i like to use a rotary encoder for fill time setting and 1 start/stop button
   pinMode(ir_fill, INPUT_PULLUP);
   pinMode(ir_start, INPUT_PULLUP);                // 3x input pullup ??? no resistors needed
@@ -238,7 +238,8 @@ void loop() {
           lcd.setCursor(0, 2);
           lcd.print("water open");
           digitalWrite(pump_or_valve, HIGH);          // start watering
-          delay(fillingtime);                         // delay fillingtiime
+          delay(fillingtime);                         // delay fillingtiime should not be a delay but while startmillis actualmillis fillingmillis
+                                                      // so that we can make a countdown on screen
           digitalWrite(pump_or_valve, LOW);           // stop wattering
           analogWrite(beltmotor, 200);                // start belt
         }
