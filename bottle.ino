@@ -177,6 +177,14 @@ void loop() {
       stop = 1;
     }
 
+ /*   
+    // start stop could me made 1 button like next
+    // toggle stopval
+    if (digitalRead (button_start) == 0) {                // stop/start button pressed toggle
+      stop = !stop;                                      // !stop (stop = notstop) toggle the value in stop
+    }
+ */   
+    
     lcd.setCursor(0, 0); lcd.print("   WELCOME  To  ");
     lcd.setCursor(0, 1); lcd.print("     A W F S    ");
 
