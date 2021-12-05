@@ -15,7 +15,7 @@ bloemen emmer vuller Fustenvuller QuickFill Emmervuller Rackinsterter volautomat
 Lift type 
 
 ![image](https://user-images.githubusercontent.com/45427770/144736439-6f6ed0fb-3651-4d46-b5f3-d11f2549561b.png)
-![image](https://user-images.githubusercontent.com/45427770/144736513-358a598f-7174-4a14-b789-2194f2f3cc76.png)
+![image](https://user-images.githubusercontent.com/45427770/144736551-9788f28a-9d06-4d0c-8117-9c16055530d4.png)
 
 Lift type 
 
