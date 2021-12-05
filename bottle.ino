@@ -20,7 +20,7 @@ https://hacksterio.s3.amazonaws.com/uploads/attachments/1200705/automatic_water_
 https://create.arduino.cc/projecthub/embeddedlab786/automatic-water-bottle-filling-system-e8251c
 conveyer belt type water filling
 want i2c lcd
-want rotary encoder for watervlaveopentime setting
+want rotary encoder for water_valve_opentime setting
 https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
 
 
