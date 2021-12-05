@@ -12,9 +12,11 @@ Aalsmeer bloemen emmervuller bloemen container vuller low cost flower bucket fil
 
 bloemen emmer vuller Fustenvuller QuickFill Emmervuller Rackinsterter volautomatisch emmervuller
 
-Lift type ![image](https://user-images.githubusercontent.com/45427770/144736439-6f6ed0fb-3651-4d46-b5f3-d11f2549561b.png)
-
-
+Lift type 
+Lift type 
+![image](https://user-images.githubusercontent.com/45427770/144736439-6f6ed0fb-3651-4d46-b5f3-d11f2549561b.png)
+Lift type 
+Lift type 
 
 
 Arduino flower bucket filling / auomatic bucket filling / auomatic container filling
