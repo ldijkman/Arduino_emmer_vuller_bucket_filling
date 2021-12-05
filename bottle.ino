@@ -1,6 +1,8 @@
 
 
 
+
+
 /*
   started with the code from
       https://youtu.be/L9ZFgElnTGU
@@ -27,9 +29,11 @@
   relais engine conveyer belt beltmotor
 */
 
-#include<LiquidCrystal.h>                 // better use i2c display???
-#include <EEPROM.h>                       // for saving fillingtime tru reboot / powercycle
-LiquidCrystal lcd(2, 3, 4, 5, 6, 7);      // better use i2c display???
+#include <LiquidCrystal_I2C.h>                // better use i2c display??? https://www.arduinolibraries.info/libraries/liquid-crystal-i2-c
+#include <EEPROM.h>                           // for saving fillingtime tru reboot / powercycle
+
+
+LiquidCrystal_I2C lcd(0x27, 20, 4);          // Set the LCD address to 0x27 for a 20 chars and 4 line display
 
 #define echopin A4                        // echo pin      // ultrasonic tank level detection  not needed
 #define trigpin A5                       // Trigger pin    // ultrasonic tank level detection  not needed
@@ -73,7 +77,7 @@ void setup() {
                                                   // i like to use a rotary encoder for fill time setting and 1 start/stop button
   pinMode (button_set, INPUT_PULLUP);             // input pullup ???
   pinMode (button_val_up, INPUT_PULLUP);          // input pullup ???
-  pinMode (button_stop], INPUT_PULLUP);           // input pullup ???
+  pinMode (button_stop, INPUT_PULLUP);           // input pullup ???
   pinMode (button_start, INPUT_PULLUP);           // input pullup ???
                                                   // i like to use a rotary encoder for fill time setting and 1 start/stop button
   pinMode(ir_fill, INPUT_PULLUP);
@@ -88,7 +92,10 @@ void setup() {
 
   pinMode(buz, OUTPUT);
 
-  lcd.begin(16, 4);
+  lcd.begin();               // initialize the LCD
+
+  lcd.backlight();           // Turn on the blacklight 
+  
   lcd.setCursor(0, 0); lcd.print("   WELCOME  To  ");
   lcd.setCursor(0, 1); lcd.print("Automatic  Water");
   lcd.setCursor(0, 2); lcd.print("  Filling");
