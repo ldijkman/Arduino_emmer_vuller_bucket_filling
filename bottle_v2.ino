@@ -3,6 +3,8 @@
 
 
 
+
+
 /*
   started with the code from
       https://youtu.be/L9ZFgElnTGU
@@ -99,7 +101,7 @@ void setup() {
 
 
   Read();                                   // read eeprom fillingtime wil be 0 at the first boot ???
-  if (fillingtime == 0) fillingtime = 2500; // make it 2500 miliseconds 2.5 seconds
+  if (fillingtime <= 50) fillingtime = 2500; // make it 2500 miliseconds 2.5 seconds
 
 
 
@@ -182,8 +184,8 @@ void loop() {
     lcd.setCursor(0, 1); lcd.print("     A W F S    ");
 
     lcd.setCursor(0, 2);
-   // lcd.print("Tank Level=");
-   // lcd.print(dist);
+    lcd.print("stop=");
+    lcd.print(stop);
    // lcd.print("%   ");
 
     lcd.setCursor(0, 3);
