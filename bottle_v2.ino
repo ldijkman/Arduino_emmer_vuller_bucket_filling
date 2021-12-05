@@ -12,7 +12,14 @@
       https://github.com/embeddedlab786/Automatic_Water_Bottle_Filling_System
   but will change a lot and add some comments to the code
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
+  
   should have a screen for testing all inputs / outputs to check working
+  filling time should not be a delay but startmillis fillmillis actualmillis
+  so that we can make a countdown
+  and add another filltimer with countdown for nutricients or chloride  
+  fillcounter with reset
+  remove stopbutten make startbutton toggle
+  
   aalsmeer bloemen veiling emmervuller containervuller fustvuller
   low cost water filling timer conveyer belt automation controller +/-10 euro
   https://youtu.be/L9ZFgElnTGU
