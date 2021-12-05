@@ -11,19 +11,19 @@ want rotary encoder for watervlaveopentime setting
 https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
 
 
-#include<LiquidCrystal.h>
+#include<LiquidCrystal.h>                 // better use i2c display???
 #include <EEPROM.h>
-LiquidCrystal lcd(2, 3, 4, 5, 6, 7);
+LiquidCrystal lcd(2, 3, 4, 5, 6, 7);     // better use i2c display???
 
 #define echopin A4 // echo pin
 #define trigpin A5 // Trigger pin
 
 int cont = 0;
 
-int in1 = A0;
-int in2 = A1;
-int in3 = A2;
-int in4 = A3;
+int in1 = A0;    // button set fill timer micro seconds digit selection    could be 2,9 seconds instead of 2900 milli
+int in2 = A1;    // button time        digit value++ up increase
+int in3 = A2;    // button stop 
+int in4 = A3;    // button start       start and stop could be made 1 button
 
 int remotePins [] = { A0, A1, A2, A3};
 
@@ -51,13 +51,13 @@ long result = 0;
 
 void setup() {
   for (int i = 0; i < 5; i ++) {
-    pinMode (remotePins [i], INPUT);
-    digitalWrite(remotePins [i], HIGH);
+    pinMode (remotePins [i], INPUT);          // input pullup ???
+    digitalWrite(remotePins [i], HIGH);       // i like to use a rotary encoder for fill time setting and 1 start/stop button
   }
 
   pinMode(ir_fill, INPUT);
-  pinMode(ir_start, INPUT);
-  pinMode(ir_stop, INPUT);
+  pinMode(ir_start, INPUT);             // 3x input pullup ??? no resistors needed
+  pinMode(ir_stop, INPUT);              // think 2 product detection sensors are enough 1 fill position and 1 end conveyer position stop
 
   pinMode (trigpin, OUTPUT);
   pinMode (echopin, INPUT);
