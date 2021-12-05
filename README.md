@@ -14,7 +14,7 @@ bloemen emmer vuller Fustenvuller QuickFill Emmervuller Rackinsterter volautomat
 
 Lift type 
 
-![image](https://user-images.githubusercontent.com/45427770/144736439-6f6ed0fb-3651-4d46-b5f3-d11f2549561b.png)
+![image](https://user-images.githubusercontent.com/45427770/144736990-afe15bbb-2e55-4d07-9809-1b7f57647ccf.png)
 ![image](https://user-images.githubusercontent.com/45427770/144736551-9788f28a-9d06-4d0c-8117-9c16055530d4.png)
 
 place stack off xxx buckets on the lift
