@@ -18,8 +18,8 @@ icc 20x4 dot matrix lcd
 rotary encoder
 buttons
 optic or ultrasonic sensors for bottle bucket detection
-valve or pump for water
-relais engine conveyer belt motor
+valve or pump_or_valve for water
+relais engine conveyer belt beltmotor
 
 
 #include<LiquidCrystal.h>                 // better use i2c display???
@@ -46,8 +46,8 @@ int buz = 13;
 
 int timer = 0;
 
-int pump = 8;
-int motor = 9;
+int pump_or_valve = 8;
+int beltmotor = 9;
 
 int ir_start = 10;
 int ir_fill = 11;
@@ -58,7 +58,7 @@ int dist;
 long duration;
 
 int val1 = 0, val2 = 0, val3 = 0, val4 = 1;
-long result = 0;
+long fillingtime = 0;
 
 void setup() {
   for (int i = 0; i < 5; i ++) {
@@ -73,8 +73,8 @@ void setup() {
   pinMode (trigpin, OUTPUT);
   pinMode (echopin, INPUT);
 
-  pinMode(motor, OUTPUT);
-  pinMode(pump, OUTPUT);
+  pinMode(beltmotor, OUTPUT);
+  pinMode(pump_or_valve, OUTPUT);
 
   pinMode(buz, OUTPUT);
 
@@ -87,7 +87,7 @@ void setup() {
   Serial.begin(9600);
   //Write();
   Read();
-  //analogWrite(motor, 100);
+  //analogWrite(beltmotor, 100);
   for (int i = 0; i < 5; i ++) {
     dist = data1();
     data2();
@@ -160,7 +160,7 @@ void loop() {
 
     lcd.setCursor(0, 3);
     lcd.print("Fill Time =");
-    lcd.print(result);
+    lcd.print(fillingtime);
     lcd.print("   ");
   } else {
 
@@ -171,19 +171,19 @@ void loop() {
     lcd.print(val2);
     lcd.print(val1);
 
-    if (mode == 4) {
+    if (mode == 4) {              // edit fillingtime active print a - for selected active for change  digit
       lcd.setCursor(10, 1);
       lcd.print("-");
     }
-    if (mode == 3) {
+    if (mode == 3) {              // edit fillingtime active print a - for selected active for change  digit
       lcd.setCursor(11, 1);
       lcd.print("-");
     }
-    if (mode == 2) {
+    if (mode == 2) {               // edit fillingtime active print a - for selected active for change  digit
       lcd.setCursor(12, 1);
       lcd.print("-");
     }
-    if (mode == 1) {
+    if (mode == 1) {              // edit fillingtime active print a - for selected active for change  digit
       lcd.setCursor(13, 1);
       lcd.print("-");
     }
@@ -194,21 +194,21 @@ void loop() {
 
   if (stop == 1) {
     if (digitalRead (ir_stop) == 1) {
-      analogWrite(motor, 200);
+      analogWrite(beltmotor, 200);                 // start belt
       if (digitalRead (ir_fill) == 0) {
         if (stop1 == 0) {
           stop1 = 1;
-          analogWrite(motor, 0);
+          analogWrite(beltmotor, 0);                 // stop belt
           delay(200);
-          digitalWrite(pump, HIGH);
-          delay(result);
-          digitalWrite(pump, LOW);
+          digitalWrite(pump_or_valve, HIGH);          // start watering
+          delay(fillingtime);                              // delay fillingtiime
+          digitalWrite(pump_or_valve, LOW);           // stop wattering
           for (int i = 0; i < 10; i ++) {
             dist = data1();                     // ultrasonic tank level detection  not needed 
             data2();                            // ultrasonic tank level detection  not needed 
             delay(200);
           }
-          analogWrite(motor, 200);
+          analogWrite(beltmotor, 200);           // start belt
         }
       }
 
@@ -218,11 +218,11 @@ void loop() {
 
     }
     else {
-      analogWrite(motor, 0);
+      analogWrite(beltmotor, 0);   // stop belt
       delay(300);
     }
   } else {
-    analogWrite(motor, 0);
+    analogWrite(beltmotor, 0);    // stop belt  
   }
 
 }
@@ -230,8 +230,8 @@ void loop() {
 // read and store filling timer value setting for reboot / powercycle  
 void Read() {
   val1 = EEPROM.read(11); val2 = EEPROM.read(12); val3 = EEPROM.read(13); val4 = EEPROM.read(14);
-  result = val4 * 1000 + val3 * 100 + val2 * 10 + val1;
-  Serial.println(result);
+  fillingtime = val4 * 1000 + val3 * 100 + val2 * 10 + val1;
+  Serial.println(fillingtime);
 }
 // read and store filling timer value setting for reboot / powercycle  
 void Write() {
