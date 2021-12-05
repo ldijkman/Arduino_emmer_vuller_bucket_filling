@@ -36,7 +36,7 @@ place a new stack off buckets
 
 press start and lift goes up top bucket to optical sensor and fills top bucket with water
 
-und so weiter GOTO BEGIN: with nutricient flow snakepump dosing https://youtu.be/9cRqXQjeAf8
+und so weiter GOTO BEGIN: with nutricient?/chloride? snakepump flow dosing https://youtu.be/9cRqXQjeAf8
 
 https://www.google.com/search?q=berg+emmervuller
 
