@@ -283,3 +283,8 @@ long data1() {                             // ultrasonic tank level detection  n
   duration = pulseIn (echopin, HIGH);
   return duration / 29 / 2;
 }
+
+
+// https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
+
+
