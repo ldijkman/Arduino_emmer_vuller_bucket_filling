@@ -226,12 +226,14 @@ void loop() {
   }
 
 }
+
+// read and store filling timer value setting for reboot / powercycle  
 void Read() {
   val1 = EEPROM.read(11); val2 = EEPROM.read(12); val3 = EEPROM.read(13); val4 = EEPROM.read(14);
   result = val4 * 1000 + val3 * 100 + val2 * 10 + val1;
   Serial.println(result);
 }
-
+// read and store filling timer value setting for reboot / powercycle  
 void Write() {
   EEPROM.write(11, val1); EEPROM.write(12, val2); EEPROM.write(13, val3); EEPROM.write(14, val4);
 }
