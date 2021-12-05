@@ -20,11 +20,21 @@ http://paypal.me/LDijkman
   want rotary encoder for water_valve_opentime setting
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
   
-  Arduino Nano or Uno            2 to 5 euro
+  Arduino Nano or Uno            2 to 5 euro  
+              https://www.google.com/search?q=arduino+nano
+              https://www.google.com/search?q=arduino+uno
+  
   i2c 20x4 dot matrix LCD        5 euro
-  rotary encoder                 1 euro
+             https://www.google.com/search?q=20x4+i2c
+  
+  rotary encoder                 0.5 euro
+            https://www.google.com/search?q=arduino+rotary+encoder+ky-040
+            
   buttons                        1 euro
-  optic or ultrasonic sensors for bottle bucket detection  1 to 10 euro
+  
+  ir optic or ultrasonic sensors for bottle bucket detection  1 to 10 euro
+            https://www.google.com/search?q=arduino+HW-201  
+  
   valve or pump_or_valve for water                          ??? euro
   relais engine conveyer belt beltmotor                     ??? euro
 
