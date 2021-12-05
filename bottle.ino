@@ -3,6 +3,8 @@
 
 
 
+
+
 /*
   started with the code from
       https://youtu.be/L9ZFgElnTGU
@@ -40,6 +42,7 @@ LiquidCrystal_I2C lcd(0x27, 20, 4);          // Set the LCD address to 0x27 for 
 
 int cont = 0;
 
+// int ???
 int button_set = A0;        // button set fill timer micro seconds digit selection    could be 2,9 seconds instead of 2900 milli
 int button_val_up = A1;     // button time        digit value++ up increase
 int button_stop = A2;       // button stop
@@ -106,7 +109,7 @@ void setup() {
 
 
   Read();                                   // read eeprom fillingtime wil be 0 at the first boot ???
-  if (fillingtime == 0) fillingtime = 2500; // make it 2500 iliseconds 2.5 seconds
+  if (fillingtime == 0) fillingtime = 2500; // make it 2500 miliseconds 2.5 seconds
 
   //analogWrite(beltmotor, 100);
 
