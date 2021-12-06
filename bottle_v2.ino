@@ -1,4 +1,5 @@
 
+
 // Arduino Bottle Filler - Arduino Bucket Filler conveyor type
 
 // http://paypal.me/LDijkman
@@ -72,7 +73,7 @@ int buz = 13;                 // I/O D13 Buzzer not yet used in code?
 int timer = 0;
 
 int pump_or_valve = 8;        // I/O D8 
-int pump_or_valve_run =1;     // 0 or 1  value depends on if valve is open on 0 low or 1 high 
+int pump_or_valve_run = 1;     // 0 or 1  value depends on if valve is open on 0 low or 1 high 
 int beltmotor = 9;            // I/O D9      used analog output PWM but can be changed to digital for relais
 int beltmotor_run = 1;        // 0 or 1  value depends on if valve is open on 0 low or 1 high 
 
@@ -262,7 +263,7 @@ void loop() {
           delay(200);
           lcd.setCursor(0, 2);
           lcd.print("water open");
-          digitalWrite(pump_or_valve, HIGH);          // start watering pump or open valve
+          digitalWrite(pump_or_valve, pump_or_valve_run);          // start watering pump or open valve
 
           long startmillis = millis();
           while (startmillis + fillingtime > millis()) {
@@ -278,7 +279,7 @@ void loop() {
           lcd.setCursor(0, 2);
           lcd.print("                    ");
 
-          digitalWrite(pump_or_valve, LOW);           // stop watering pump or close valve
+          digitalWrite(pump_or_valve, !pump_or_valve_run);           // !=not stop watering pump or close valve
           // analogWrite(beltmotor, 200);                // start belt PWM
           digitalWrite(beltmotor, beltmotor_run);                // start belt Relais
         }
@@ -326,4 +327,3 @@ void Write() {
 
 
 // http://paypal.me/LDijkman
-
