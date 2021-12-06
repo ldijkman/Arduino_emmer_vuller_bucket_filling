@@ -116,8 +116,8 @@ void setup() {
 
 
 
-  Read();                                   // read eeprom fillingtime wil be 0 at the first boot ???
-  if (fillingtime <= 50) fillingtime = 2500; // make it 2500 miliseconds 2.5 seconds
+  Read();                                     // read eeprom fillingtime wil be 0 at the first boot ???
+  if (fillingtime <= 50) fillingtime = 2500;  // make it 2500 miliseconds 2.5 seconds
 
 
 
@@ -135,10 +135,10 @@ void loop() {
     if (digitalRead (button_set) == 0) {       // set select digit button pressed
       lcd.clear();
       mode = mode + 1;
-      if (mode > 4) {                  // set switch digit  select 1 of 4 digits
+      if (mode > 4) {                          // set switch digit  select 1 of 4 digits
         mode = 0;
-        Write();                       // write fillingtime to eeprom
-        Read();                        // read fillingtime from eeprom
+        Write();                               // write fillingtime to eeprom
+        Read();                                // read fillingtime from eeprom
         lcd.setCursor(0, 0);
         lcd.print("  Ok Saved Data ");
         delay(1000);
@@ -147,13 +147,13 @@ void loop() {
     }
 
     if (digitalRead (button_val_up) == 0) {           // up button pressed fillingtime value++
-      if (mode == 1) {                      // digit 1 of 4 active for change
+      if (mode == 1) {                  // digit 1 of 4 active for change
         val1 = val1 + 1;
       }
-      if (mode == 2) {                     // digit 2 of 4 active for change
+      if (mode == 2) {                  // digit 2 of 4 active for change
         val2 = val2 + 1;
       }
-      if (mode == 3) {                   // digit 3 of 4 active for change
+      if (mode == 3) {                  // digit 3 of 4 active for change
         val3 = val3 + 1;
       }
       if (mode == 4) {                  // digit 5 of 4 active for change
@@ -165,10 +165,10 @@ void loop() {
       if (val2 > 9) {                  // digit2 not greater as 9 make 10 zero
         val2 = 0;
       }
-      if (val3 > 9) {                // digit3 not greater as 9 make 10 zero
+      if (val3 > 9) {                  // digit3 not greater as 9 make 10 zero
         val3 = 0;
       }
-      if (val4 > 9) {                // digit4 not greater as 9 make 10 zero
+      if (val4 > 9) {                  // digit4 not greater as 9 make 10 zero
         val4 = 0;
       }
       delay(300);
@@ -222,19 +222,19 @@ void loop() {
     lcd.print(val2);
     lcd.print(val1);
 
-    if (mode == 4) {              // edit fillingtime active print a - for selected active for change  digit
+    if (mode == 4) {              // edit fillingtime active print a ^ for selected active for change  digit
       lcd.setCursor(10, 1);
       if ((millis() / 500) % 2) lcd.print(char(B01011110)); else  lcd.print(" ");; // blinking cursor ^
     }
-    if (mode == 3) {              // edit fillingtime active print a - for selected active for change  digit
+    if (mode == 3) {              // edit fillingtime active print a ^ for selected active for change  digit
       lcd.setCursor(11, 1);
       if ((millis() / 500) % 2) lcd.print(char(B01011110)); else  lcd.print(" ");; // blinking cursor ^
     }
-    if (mode == 2) {               // edit fillingtime active print a - for selected active for change  digit
+    if (mode == 2) {              // edit fillingtime active print a ^ for selected active for change  digit
       lcd.setCursor(12, 1);
       if ((millis() / 500) % 2) lcd.print(char(B01011110)); else  lcd.print(" ");; // blinking cursor ^
     }
-    if (mode == 1) {              // edit fillingtime active print a - for selected active for change  digit
+    if (mode == 1) {              // edit fillingtime active print a ^ for selected active for change  digit
       lcd.setCursor(13, 1);
       if ((millis() / 500) % 2) lcd.print(char(B01011110)); else  lcd.print(" ");; // blinking cursor ^
     }
