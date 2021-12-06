@@ -224,19 +224,19 @@ void loop() {
 
     if (mode == 4) {              // edit fillingtime active print a - for selected active for change  digit
       lcd.setCursor(10, 1);
-      lcd.print("-");
+      if ((millis() / 500) % 2) lcd.print(char(B01011110)); else  lcd.print(" ");; // blinking cursor ^
     }
     if (mode == 3) {              // edit fillingtime active print a - for selected active for change  digit
       lcd.setCursor(11, 1);
-      lcd.print("-");
+      if ((millis() / 500) % 2) lcd.print(char(B01011110)); else  lcd.print(" ");; // blinking cursor ^
     }
     if (mode == 2) {               // edit fillingtime active print a - for selected active for change  digit
       lcd.setCursor(12, 1);
-      lcd.print("-");
+      if ((millis() / 500) % 2) lcd.print(char(B01011110)); else  lcd.print(" ");; // blinking cursor ^
     }
     if (mode == 1) {              // edit fillingtime active print a - for selected active for change  digit
       lcd.setCursor(13, 1);
-      lcd.print("-");
+      if ((millis() / 500) % 2) lcd.print(char(B01011110)); else  lcd.print(" ");; // blinking cursor ^
     }
   }
 
