@@ -1,3 +1,4 @@
+
 // Arduino Bottle Filler - Arduino Bucket Filler conveyor type
 
 // http://paypal.me/LDijkman
@@ -19,7 +20,6 @@
   https://create.arduino.cc/projecthub/embeddedlab786/automatic-water-bottle-filling-system-e8251c
   
   conveyer belt type water filling
-
   want rotary encoder for water_valve_opentime setting
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
   
@@ -40,9 +40,7 @@
   
   valve or pump_or_valve for water                          ??? euro
   relais engine conveyer belt beltmotor                     ??? euro
-
 Arduino Code ??? euro    http://paypal.me/LDijkman
-
  */
 
 #include <LiquidCrystal_I2C.h>                // better use i2c display??? https://www.arduinolibraries.info/libraries/liquid-crystal-i2-c
@@ -67,19 +65,21 @@ int set = 0;
 int stop = 0, stop1;
 int mode = 0;
 
-int buz = 13;
+int buz = 13;                 // I/O D13 Buzzer not yet used in code?
 
 int timer = 0;
 
-int pump_or_valve = 8;
-int beltmotor = 9;
+int pump_or_valve = 8;        // I/O D8 
+int beltmotor = 9;            // I/O D9      used analog output PWM but can be changed to digital for relais
 
-int ir_start = 10;    // position after filling >>> should be possible without this one if code is changed
-int ir_fill = 11;     // filling position
-int ir_stop = 12;     // end  belt stop
+int ir_start = 10;    // I/O D10 IR sensor  position after filling >>> should be possible without this one if code is changed
+int ir_fill = 11;     // I/O D11 IR sensor  filling position
+int ir_stop = 12;     // I/O D12 IR sensor  end belt stop
 
-//sensors on belt looks like next setup
+// I think sensors on belt looks like next setup
 // >>>>>>>>>11 filling position>>>>>>>>>>>10 position after filling>>>>>>>>>>> 12 end  belt stop
+
+
 
 
 int val1 = 0, val2 = 0, val3 = 0, val4 = 1;
