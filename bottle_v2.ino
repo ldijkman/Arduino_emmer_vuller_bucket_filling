@@ -1,6 +1,6 @@
+// Arduino Bottle Filler - Arduino Bucket Filler conveyor type
 
-
-http://paypal.me/LDijkman
+// http://paypal.me/LDijkman
 
 /*
   started with the code from
