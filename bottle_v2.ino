@@ -1,5 +1,6 @@
 
 
+
 // Arduino Bottle Filler - Arduino Bucket Filler conveyor type
 
 // http://paypal.me/LDijkman
@@ -11,49 +12,49 @@
       https://github.com/embeddedlab786/Automatic_Water_Bottle_Filling_System
   but will change a lot and add some comments to the code
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
-  
-  
+
+
   should have a screen for testing all inputs / outputs to check working
   aalsmeer bloemen veiling emmervuller containervuller fustvuller
   low cost water filling timer conveyer belt automation controller +/-10 euro
   https://youtu.be/L9ZFgElnTGU
   https://hacksterio.s3.amazonaws.com/uploads/attachments/1200705/automatic_water_bottle_filling_system_L7E1jegbDF.png
   https://create.arduino.cc/projecthub/embeddedlab786/automatic-water-bottle-filling-system-e8251c
-  
+
   conveyer belt type water filling
   want rotary encoder for water_valve_opentime setting
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
-  
+
   add a timer/countdown output and pump or valve for nutricients / chloride / medicine / lemonade sirop ???
-  
-  Arduino Nano or Uno            2 to 5 euro  
+
+  Arduino Nano or Uno            2 to 5 euro
               https://www.google.com/search?q=arduino+nano
               https://www.google.com/search?q=arduino+uno
-  
+
   i2c 20x4 dot matrix LCD        5 euro
              https://www.google.com/search?q=20x4+i2c
-  
+
   rotary encoder                 0.5 euro
             https://www.google.com/search?q=arduino+rotary+encoder+ky-040
-            
+
   buttons                        1 euro
-  
+
   ir optic or ultrasonic sensors for bottle bucket detection  1 to 10 euro
-            https://www.google.com/search?q=arduino+HW-201  
-  
+            https://www.google.com/search?q=arduino+HW-201
+
   valve or pump_or_valve for water                          ??? euro
   relais engine conveyer belt beltmotor                     ??? euro
-Arduino Code ??? euro    http://paypal.me/LDijkman
- */
+  Arduino Code ??? euro    http://paypal.me/LDijkman
+*/
 
 #include <LiquidCrystal_I2C.h>                // better use i2c display??? https://www.arduinolibraries.info/libraries/liquid-crystal-i2-c
 #include <EEPROM.h>                           // for saving fillingtime tru reboot / powercycle
 
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);          // Set the LCD address to 0x27 for a 20 chars and 4 line display
-                                             // connect LCD i2c BackPack sda scl
-                                             // Arduino uno A4=SDA A5=SCL 
-                                             // Arduino nano A4=SDA A5=SCL
+// connect LCD i2c BackPack sda scl
+// Arduino uno A4=SDA A5=SCL
+// Arduino nano A4=SDA A5=SCL
 
 int cont = 0;
 
@@ -72,10 +73,10 @@ int buz = 13;                 // I/O D13 Buzzer not yet used in code?
 
 int timer = 0;
 
-int pump_or_valve = 8;        // I/O D8 
-int pump_or_valve_run = 1;     // 0 or 1  value depends on if valve is open on 0 low or 1 high 
+int pump_or_valve = 8;        // I/O D8
+int pump_or_valve_run = 1;     // 0 or 1  value depends on if valve is open on 0 low or 1 high
 int beltmotor = 9;            // I/O D9      used analog output PWM but can be changed to digital for relais
-int beltmotor_run = 1;        // 0 or 1  value depends on if valve is open on 0 low or 1 high 
+int beltmotor_run = 1;        // 0 or 1  value depends on if valve is open on 0 low or 1 high
 
 int ir_start = 10;    // I/O D10 IR sensor  position after filling >>> should be possible without this one if code is changed
 int ir_fill = 11;     // I/O D11 IR sensor  filling position
@@ -88,8 +89,10 @@ int ir_stop = 12;     // I/O D12 IR sensor  end belt stop
 
 
 int val1 = 0, val2 = 0, val3 = 0, val4 = 1;
-long fillingtime = 0;
 
+long fillingtime = 0;
+long startbelttime;           // timeout stop belt if running for ???? seconds
+long belttimeout = 600000;   //stop belt after 600 seconds = 10 minutes of no filling
 
 
 
@@ -205,7 +208,9 @@ void loop() {
         /*nop*/                                           // while loop as long as button is pressed
       }
       stop = !stop;                                       // !stop (stop = notstop) toggle the value in stop
+
       delay(500);
+      startbelttime = millis();  // for timeout stop belt if > 60 seconds
     }
 
 
@@ -213,8 +218,8 @@ void loop() {
     lcd.setCursor(0, 1); lcd.print("    BucketFiller ");
 
     lcd.setCursor(0, 2);
-    if (stop==1)lcd.print("Running");
-    if (stop==0)lcd.print("Stopped");
+    if (stop == 1)lcd.print("Running");
+    if (stop == 0)lcd.print("Stopped");
     lcd.print("        ");
 
     lcd.setCursor(0, 3);
@@ -255,11 +260,13 @@ void loop() {
     if (digitalRead (ir_stop) == 1) {
       // analogWrite(beltmotor, 200);                 // start belt PWM
       digitalWrite(beltmotor, beltmotor_run);                     // start belt Relais
+
       if (digitalRead (ir_fill) == 0) {
+        startbelttime = millis();  // for timeout stop belt if > 60 seconds
         if (stop1 == 0) {
           stop1 = 1;
           //analogWrite(beltmotor, 0);                  // stop belt PWM
-          digitalWrite(beltmotor, !beltmotor_run);                 // stop belt Relais 
+          digitalWrite(beltmotor, !beltmotor_run);                 // stop belt Relais
           delay(200);
           lcd.setCursor(0, 2);
           lcd.print("water open");
@@ -289,11 +296,14 @@ void loop() {
         stop1 = 0;
       }
 
+      if (millis() - startbelttime >= belttimeout)stop = 0;   // timeout belt doing nothing for 600 seconds 10 minutes
+      Serial.println(millis() - startbelttime);
+
     }
     else {
-       // analogWrite(beltmotor, 0);                       // stop belt PWM
-       digitalWrite(beltmotor, !beltmotor_run);                     // !=not stop belt Relais
-       delay(300);
+      // analogWrite(beltmotor, 0);                       // stop belt PWM
+      digitalWrite(beltmotor, !beltmotor_run);                     // !=not stop belt Relais
+      delay(300);
     }
   } else {
     // analogWrite(beltmotor, 0);                       // stop belt PWM
