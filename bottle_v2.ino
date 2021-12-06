@@ -72,7 +72,9 @@ int buz = 13;                 // I/O D13 Buzzer not yet used in code?
 int timer = 0;
 
 int pump_or_valve = 8;        // I/O D8 
+int pump_or_valve_run =1;     // 0 or 1  value depends on if valve is open on 0 low or 1 high 
 int beltmotor = 9;            // I/O D9      used analog output PWM but can be changed to digital for relais
+int beltmotor_run = 1;        // 0 or 1  value depends on if valve is open on 0 low or 1 high 
 
 int ir_start = 10;    // I/O D10 IR sensor  position after filling >>> should be possible without this one if code is changed
 int ir_fill = 11;     // I/O D11 IR sensor  filling position
@@ -251,12 +253,12 @@ void loop() {
   if (stop == 1) {
     if (digitalRead (ir_stop) == 1) {
       // analogWrite(beltmotor, 200);                 // start belt PWM
-      digitalWrite(beltmotor, 1);                     // start belt Relais
+      digitalWrite(beltmotor, beltmotor_run);                     // start belt Relais
       if (digitalRead (ir_fill) == 0) {
         if (stop1 == 0) {
           stop1 = 1;
-          analogWrite(beltmotor, 0);                  // stop belt PWM
-          digitalWrite(beltmotor, 0);                 // stop belt Relais
+          //analogWrite(beltmotor, 0);                  // stop belt PWM
+          digitalWrite(beltmotor, !beltmotor_run);                 // stop belt Relais 
           delay(200);
           lcd.setCursor(0, 2);
           lcd.print("water open");
@@ -278,7 +280,7 @@ void loop() {
 
           digitalWrite(pump_or_valve, LOW);           // stop watering pump or close valve
           // analogWrite(beltmotor, 200);                // start belt PWM
-          digitalWrite(beltmotor, 1);                // start belt Relais
+          digitalWrite(beltmotor, beltmotor_run);                // start belt Relais
         }
       }
 
@@ -289,12 +291,12 @@ void loop() {
     }
     else {
        // analogWrite(beltmotor, 0);                       // stop belt PWM
-       digitalWrite(beltmotor, 0);                     // stop belt Relais
+       digitalWrite(beltmotor, !beltmotor_run);                     // !=not stop belt Relais
        delay(300);
     }
   } else {
     // analogWrite(beltmotor, 0);                       // stop belt PWM
-    digitalWrite(beltmotor, 0);                     // stop belt Relais
+    digitalWrite(beltmotor, !beltmotor_run);                     // !=not stop belt Relais
   }
 
 }
