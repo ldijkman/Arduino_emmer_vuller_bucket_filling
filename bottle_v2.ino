@@ -50,6 +50,9 @@ Arduino Code ??? euro    http://paypal.me/LDijkman
 
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);          // Set the LCD address to 0x27 for a 20 chars and 4 line display
+                                             // connect LCD i2c BackPack sda scl
+                                             // Arduino uno A4=SDA A5=SCL 
+                                             // Arduino nano A4=SDA A5=SCL
 
 int cont = 0;
 
@@ -194,7 +197,7 @@ void loop() {
     // toggle stopval
     if (digitalRead (button_start) == 0) {                // stop/start button pressed toggle
       while (digitalRead (button_start) == 0) {
-        /*nop*/
+        /*nop*/                                           // while loop as long as button is pressed
       }
       stop = !stop;                                       // !stop (stop = notstop) toggle the value in stop
       delay(500);
@@ -253,7 +256,7 @@ void loop() {
           delay(200);
           lcd.setCursor(0, 2);
           lcd.print("water open");
-          digitalWrite(pump_or_valve, HIGH);          // start watering
+          digitalWrite(pump_or_valve, HIGH);          // start watering pump or open valve
 
           long startmillis = millis();
           while (startmillis + fillingtime > millis()) {
@@ -269,7 +272,7 @@ void loop() {
           lcd.setCursor(0, 2);
           lcd.print("                    ");
 
-          digitalWrite(pump_or_valve, LOW);           // stop wattering
+          digitalWrite(pump_or_valve, LOW);           // stop watering pump or close valve
           analogWrite(beltmotor, 200);                // start belt
         }
       }
