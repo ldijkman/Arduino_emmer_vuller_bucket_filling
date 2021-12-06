@@ -248,11 +248,13 @@ void loop() {
 
   if (stop == 1) {
     if (digitalRead (ir_stop) == 1) {
-      analogWrite(beltmotor, 200);                    // start belt
+      // analogWrite(beltmotor, 200);                 // start belt PWM
+      digitalWrite(beltmotor, 1);                     // start belt Relais
       if (digitalRead (ir_fill) == 0) {
         if (stop1 == 0) {
           stop1 = 1;
-          analogWrite(beltmotor, 0);                  // stop belt
+          analogWrite(beltmotor, 0);                  // stop belt PWM
+          digitalWrite(beltmotor, 0);                 // stop belt Relais
           delay(200);
           lcd.setCursor(0, 2);
           lcd.print("water open");
@@ -273,7 +275,8 @@ void loop() {
           lcd.print("                    ");
 
           digitalWrite(pump_or_valve, LOW);           // stop watering pump or close valve
-          analogWrite(beltmotor, 200);                // start belt
+          // analogWrite(beltmotor, 200);                // start belt PWM
+          digitalWrite(beltmotor, 1);                // start belt Relais
         }
       }
 
@@ -283,11 +286,13 @@ void loop() {
 
     }
     else {
-      analogWrite(beltmotor, 0);   // stop belt
-      delay(300);
+       // analogWrite(beltmotor, 0);                       // stop belt PWM
+       digitalWrite(beltmotor, 0);                     // stop belt Relais
+       delay(300);
     }
   } else {
-    analogWrite(beltmotor, 0);    // stop belt
+    // analogWrite(beltmotor, 0);                       // stop belt PWM
+    digitalWrite(beltmotor, 0);                     // stop belt Relais
   }
 
 }
