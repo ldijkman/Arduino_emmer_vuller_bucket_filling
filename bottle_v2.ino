@@ -205,8 +205,8 @@ void loop() {
     lcd.setCursor(0, 1); lcd.print("    BucketFiller ");
 
     lcd.setCursor(0, 2);
-    lcd.print("run = ");
-    lcd.print(stop);
+    if (stop==1)lcd.print("Running");
+    if (stop==0)lcd.print("Stopped");
     lcd.print("        ");
 
     lcd.setCursor(0, 3);
