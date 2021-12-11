@@ -42,6 +42,7 @@
 
   ir optic or ultrasonic sensors for bottle bucket detection  1 to 10 euro
             https://www.google.com/search?q=arduino+HW-201
+            hw201 output is low when object seen / output high with no object
 
   valve or pump_or_valve for water                          ??? euro
   relais engine conveyer belt beltmotor                     ??? euro
