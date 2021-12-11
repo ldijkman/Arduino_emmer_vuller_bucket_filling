@@ -25,6 +25,7 @@
   want rotary encoder for water_valve_opentime setting
   https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
 
+  add a second valve arduino lemonade machine conveyor 
   add a timer/countdown output and pump or valve for nutricients / chloride / medicine / lemonade sirop ???
 
   Arduino Nano or Uno            2 to 5 euro
