@@ -329,13 +329,16 @@ void Write() {
   EEPROM.write(12, val2);
   EEPROM.write(13, val3);
   EEPROM.write(14, val4);
+
+// https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
+
+// would you send me a video link when you got it working????
+// https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling/discussions
+
+// http://paypal.me/LDijkman
 }
 
 
 
 
 
-// https://github.com/ldijkman/Arduino_emmer_vuller_bucket_filling
-
-
-// http://paypal.me/LDijkman
